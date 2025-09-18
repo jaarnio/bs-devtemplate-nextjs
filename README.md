@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BrightSign Next.js React Starter
 
-## Getting Started
+A Next.js web application template for BrightSign media players with MQTT integration, designed for deployment via BrightAuthor:connected.
 
-First, run the development server:
+![Application Screenshot](docs/app-screenshot.jpg)
 
+## Overview
+
+This is a production-ready Next.js application that:
+- Runs on BrightSign media players with OS 9.1.x+ (Node.js 18+ and Chromium 120)
+- Includes MQTT messaging for real-time communication
+- Builds to a single `server.js` entry point for easy deployment
+- Integrates with BrightAuthor:connected for presentation management
+
+## Quick Start
+
+### Development
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Production Build
+```bash
+# Build the application
+npm run build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Create single entry point (dist/server.js)
+npm run build:entry
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Test locally
+npm start
+```
 
-## Learn More
+## BrightSign Deployment
 
-To learn more about Next.js, take a look at the following resources:
+![BrightAuthor:connected](docs/BrightAuthorConnected.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Using BrightAuthor:connected
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Open the Presentation**
+   - Navigate to the `presentation/` folder
+   - Open `bs-nextjs-app.bpfx` in BrightAuthor:connected
 
-## Deploy on Vercel
+2. **Configure the Presentation**
+   - Ensure the `server.js` file from `dist/` is linked to your project
+   - Set the Node.js application to run `server.js`
+   - Configure the HTML widget to load `http://localhost:3000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Publish to BrightSign**
+   - Connect to your BrightSign player
+   - Ensure the player is running OS 9.1.x or higher (required for Node.js 18+ and Chromium 120)
+   - Publish the presentation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+bs-nextjs-react-starter/
+├── dist/                  # Production build output
+│   └── server.js         # Single entry point for BrightSign
+├── presentation/         # BrightAuthor:connected files
+│   └── bs-nextjs-app.bpfx
+├── docs/                 # Documentation assets
+├── src/                  # Source code
+│   ├── app/             # Next.js app router
+│   ├── components/      # React components
+│   └── lib/            # Utilities and MQTT client
+└── scripts/             # Build scripts
+```
+
+## Features
+
+- **Next.js 15** with App Router
+- **React 19** with TypeScript
+- **MQTT Integration** via WebSocket
+- **Tailwind CSS + DaisyUI** for styling
+- **Single Entry Point** deployment (`server.js`)
+- **BrightAuthor:connected** presentation included
+
+## Configuration
+
+Environment variables (`.env.local`):
+```env
+PORT=3000
+NEXT_PUBLIC_MQTT_BROKER=wss://test.mosquitto.org:8081
+NEXT_PUBLIC_MQTT_TOPIC=hello-world-reference/test
+```
+
+## Requirements
+
+- **Development**: Node.js 18+
+- **BrightSign Player**: OS 9.1.x or higher
+- **BrightAuthor:connected**: Latest version
+
+## License
+
+MIT
