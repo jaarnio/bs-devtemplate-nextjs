@@ -1,0 +1,12 @@
+{
+  "name": "hello-world-reference-dist",
+  "version": "1.0.0",
+  "description": "Hello World Reference Application - Distribution Build",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

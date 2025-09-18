@@ -1,0 +1,8 @@
+{
+  "/api/health/route": "/api/health",
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/api/mqtt/status/route": "/api/mqtt/status",
+  "/api/mqtt/stream/route": "/api/mqtt/stream",
+  "/page": "/"
+}
